@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a1020">
+  <title>SurveyGlass — Website Content Editor</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="editor-page">
+  <header class="editor-topbar">
+    <a class="editor-top-brand" href="index.html"><span class="brand-mark"><span></span><span></span><span></span></span><span>SurveyGlass <small>WEBSITE STUDIO</small></span></a>
+    <div class="editor-top-actions"><a href="index.html" class="editor-button" target="_blank" rel="noopener">Open website ↗</a><button class="editor-button" id="importButton">Import JSON</button><button class="editor-button primary" id="exportJsButton">Export publish file ↓</button><input id="importFile" type="file" accept="application/json,.json" class="hidden"></div>
+  </header>
+  <div class="editor-layout">
+    <aside class="editor-sidebar">
+      <h2>Brand & appearance</h2><p class="help">Customise your brand, contact details and visual style. Changes are previewable from this browser.</p>
+      <div class="editor-control"><label for="brandInput">Brand name</label><input id="brandInput" type="text" maxlength="80"></div>
+      <div class="editor-control"><label for="descriptorInput">Short brand description</label><input id="descriptorInput" type="text" maxlength="160"></div>
+      <div class="editor-control"><label for="contactEmailSetting">Contact email</label><input id="contactEmailSetting" type="email" placeholder="you@yourdomain.com"><small>Used by contact links and the enquiry form. Enter a real inbox before publishing.</small></div>
+      <div class="editor-control"><label for="contactPhoneSetting">Contact phone (optional)</label><input id="contactPhoneSetting" type="tel" placeholder="+91 …"></div>
+      <div class="editor-control"><label for="contactLocationSetting">Location line</label><input id="contactLocationSetting" type="text" placeholder="India"></div>
+      <div class="editor-control"><label>Accent colours</label><div class="editor-color-row"><div class="editor-color"><input type="color" id="accentColor"><span>Primary</span></div><div class="editor-color"><input type="color" id="accent2Color"><span>Secondary</span></div></div></div>
+      <div class="editor-control"><label for="motionSelect">Motion level</label><select id="motionSelect"><option value="high">Expressive — more motion</option><option value="subtle">Subtle — calmer motion</option><option value="off">Reduced motion</option></select></div>
+      <div class="editor-control"><label for="glassRange">Glass blur <output id="glassValue">22px</output></label><input id="glassRange" type="range" min="0" max="36" value="22" style="width:100%;accent-color:var(--accent)"><small>Higher values create a stronger frosted-glass feel. Keep text legible.</small></div>
+      <div class="editor-actions-row"><button class="editor-button" id="saveButton">Save in this browser</button><button class="editor-button danger" id="resetButton">Reset defaults</button></div>
+    </aside>
+    <main class="editor-main">
+      <div class="editor-heading"><div><h1>Website Content Studio</h1><p>Edit your marketing page without digging through code. Reorder sections, change copy, tune motion and export a publish-ready content file.</p></div><span class="status-pill" id="saveStatus">LOCAL EDITOR</span></div>
+      <div class="editor-notice"><strong>Publishing note:</strong> this static editor saves to the current browser and can export your content. To make edits visible to every visitor, export <code>site-content.js</code> and replace <code>assets/site-content.js</code> on your host, then redeploy. For secure multi-user editing and one-click server publishing, connect a protected CMS/backend.</div>
+      <section class="editor-panel">
+        <div class="editor-panel-head"><div><h2>Page sections</h2><p>Drag to reorder, or use the arrows. Hide sections instead of deleting them.</p></div><span class="status-pill" id="visibleCount">9 visible</span></div>
+        <div class="section-list" id="sectionList"></div>
+      </section>
+      <section class="editor-panel" id="sectionEditorPanel">
+        <div class="editor-panel-head"><div><h2 id="activeSectionTitle">Edit section</h2><p id="activeSectionSub">Select a section from the list above.</p></div><span class="status-pill" id="sectionTypeBadge">SECTION</span></div>
+        <div id="sectionFields"><div class="editor-empty">Choose a section to edit its content.</div></div>
+        <div class="editor-actions-row"><button class="editor-button primary" id="saveSectionButton">Apply section changes</button><button class="editor-button" id="addItemButton">+ Add item</button></div>
+      </section>
+      <section class="editor-panel">
+        <div class="editor-panel-head"><div><h2>Preview & publish</h2><p>Preview the website with these changes, then export files to publish them.</p></div></div>
+        <p class="editor-preview-note">The editor does not send form submissions to a server, process payments, or create user accounts. The contact form opens the visitor's email application using the address configured above. Connect an email/form service or backend before relying on it for production leads.</p>
+        <div class="editor-actions-row"><button class="editor-button primary" id="previewButton">Save & preview website ↗</button><button class="editor-button" id="exportJsonButton">Export JSON backup ↓</button><button class="editor-button" id="exportJsButtonBottom">Export site-content.js ↓</button><button class="editor-button" id="downloadReadmeButton">Download publish notes ↓</button></div>
+      </section>
+      <div class="editor-bottom-actions"><span id="bottomStatus">Changes stay in this browser until you export and publish them.</span><div><button class="editor-button" id="saveBottomButton">Save changes</button><button class="editor-button primary" id="publishBottomButton">Export publish file ↓</button></div></div>
+    </main>
+  </div>
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+  <script src="assets/site-content.js"></script>
+  <script src="assets/editor.js"></script>
+</body>
+</html>
